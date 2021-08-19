@@ -18,26 +18,25 @@ def crawl_alexa_top_sites():
         for lines in csvFile:
             # print(lines['Domain'])
             
-            if count == 1:
+            if count == 50:
                 break
 
-            # r = requests.get("https://{}".format(lines['Domain']))
-            r = requests.get("https://adobe.com")
+            r = requests.get("https://{}".format(lines['Domain']))
             # print(r.text)
             data = r.text.encode('utf8') 
-            with open("01.html", 'wb') as f:
-                f.write(data)
+            #with open("01.html", 'wb') as f:
+            #    f.write(data)
 
             
-            r = requests.post(url='https://api.mlsec.io/api/phish/submit_sample?api_token=1c45ac76062c527daa4be7ff8c11b992&model=4,5,6',
+            r = requests.post(url='https://api.mlsec.io/api/phish/submit_sample?api_token=1c45ac76062c527daa4be7ff8c11b992&model=6',
                             data=data,
                             headers={'Content-Type': 'application/octet-stream'})
             res_json = r.json()
-            if res_json['p_mod_04'] <= 0.1 and res_json['p_mod_05'] <= 0.1 and res_json['p_mod_06'] <= 0.1:
-                print("{} => {} {} {}".format(lines['Domain'], res_json['p_mod_04'], res_json['p_mod_05'], res_json['p_mod_06']))
-                break
+            if res_json['p_mod_06'] <= 0.1:
+                print("{} => {}".format(lines['Domain'], res_json['p_mod_06']))
+                #break
             else:
-                print("{} => {} {} {}".format(lines['Domain'], res_json['p_mod_04'], res_json['p_mod_05'], res_json['p_mod_06']))
+                print("{} => {}".format(lines['Domain'], res_json['p_mod_06']))
             
             count += 1
     
@@ -53,7 +52,7 @@ def create_random_data():
 
 
 def convert_html_to_base64_string():
-    f = open("phishing_samples_2021//08.html")
+    f = open("phishing_samples_2021//03_orig.html")
     lines = f.readlines()
 
     code_str = ''.join([line for line in lines if line != '\n' ])
@@ -64,7 +63,9 @@ def convert_html_to_base64_string():
 
 def main():
     convert_html_to_base64_string()
+    #crawl_alexa_top_sites()
    
 
 if __name__=='__main__':
     main()
+
