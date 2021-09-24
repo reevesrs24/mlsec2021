@@ -1,2 +1,2 @@
 # mlsec2021
-Microsoft Machine Learning and Security Evasion Competition 2021
+Machine Learning Security Evasion Competition 2021
