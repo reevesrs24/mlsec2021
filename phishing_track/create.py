@@ -28,7 +28,7 @@ def crawl_alexa_top_sites():
             #    f.write(data)
 
             
-            r = requests.post(url='https://api.mlsec.io/api/phish/submit_sample?api_token=1c45ac76062c527daa4be7ff8c11b992&model=6',
+            r = requests.post(url='https://api.mlsec.io/api/phish/submit_sample?api_token=<api token>&model=6',
                             data=data,
                             headers={'Content-Type': 'application/octet-stream'})
             res_json = r.json()
