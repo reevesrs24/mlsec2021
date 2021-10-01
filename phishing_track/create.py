@@ -34,7 +34,7 @@ def crawl_alexa_top_sites():
             res_json = r.json()
             if res_json['p_mod_06'] <= 0.1:
                 print("{} => {}".format(lines['Domain'], res_json['p_mod_06']))
-                #break
+                break
             else:
                 print("{} => {}".format(lines['Domain'], res_json['p_mod_06']))
             
