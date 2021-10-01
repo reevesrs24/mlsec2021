@@ -77,3 +77,7 @@ In order for this technique to work i would need a benign baseline to the javscr
 <p align="center">
 <img src="phishing_track/images/adobe.png" width=85% height=85%>
 </p>
+
+## 4. Integration ##
+
+Two separate parts now need to be combined in such a way that the encoded phishing site is still deployed with the same degree of fidelity as the original and so that the benign HTML file still bypasses all the anti-phishing models.  This was a slow process that consisted of a lot trial and error.  Incrementally make modifications to the benign file and see of the anti-phishing models would flag it.  While many variations were attempted two key issues stood out.  The first issue encountered was how to hide the all the benign elements so that only the phishinf HTML elements would be displayed.  My original idea was to encompasss the entire benign file within a `div` element and hide it immediately, but a `<div>` element spanning the entire HTML file would be flagged.  Through a trial and error process a sweet spot could be found via two `div` elements embedded in certain areas within the file.  Issue 1 solved and 1 to go.  The next issue was focused on where to place the base64 encoded phishing blob within the site.  Having it preset within the actual `<script>` element would trigger the anti-phishing model which they apprently did not like.  So once again through trial and error an area was discovered within the file which allowed for all 7 anti-phishing models to be bypassed.  This area happened to be the `class` attribute within a `<script>` element.  
