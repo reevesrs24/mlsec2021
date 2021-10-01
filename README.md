@@ -6,7 +6,37 @@ The dawn of the digital age has unleashed the Captain Ahab's upon the sea's of t
 First and foremost sspecial thanks to [Dr. Hyrum Anderson](https://twitter.com/drhyrum?lang=en) from Microsoft and [Zoltan Balazs](https://twitter.com/zh4ck?lang=en) from CUJO AI for organizing this one of kind competition.  Also a shout out to the sponsors who helped support and make this compettion possible [CUJO AI](https://twitter.com/CUJOAI), [Microsoft](https://twitter.com/Microsoft), [MRG Effitas](https://twitter.com/mrgeffitas), [NVIDIA](https://twitter.com/nvidia) and [VMRay](https://twitter.com/vmray).
 
 ## 1. Strategy ##
-The overall strategy to defeat the anti-phishing models combined base64 encoding of the phishing site which would then be embedded and self-extracted within a benign template.  In order to achieve FUD I broke this strategy down into 3 distinct parts.
+The overall strategy to defeat the anti-phishing models combined a base64 encoding of the phishing site which would then be embedded and self-extracted within a benign template.  In order to achieve FUD this strategy was broken down into 3 distinct parts.
 1. Devise method utlizing javascript to recreate the phishing page
-2. Find benign html template which bypass all 7 anti-phishing models
+2. Find benign html template which would bypass all 7 anti-phishing models
 3. Incrementally combine the deployment method with the benign html template
+
+Overall I was aiming for a plug and play method which could be used for every phsihing site and one which would mitigate the overall manual configuration needed to fully bypass the models.
+
+## 2. Deployment Method ##
+
+In order to deploy the base64 encoded phishing site a method would need to be devised to extract and overlay the benign template with the phishing site.  The `src` HTML attribute intially seemed to be the most promising method since a bae64 encoded string could be converted to a `text/html` blob and injected into an element with this attribute.  Doing a little research led to an assortment of HTML tags that utilized this attribute in some capacity.  
+<br>
+<br>
+![alt text](phishing_track/images/html_src.PNG)
+<br>
+<br>
+After some trial and error it became evident that the only viable HTML elements that would recreate the original phishing site with a high degree of fidelity were the `iframe` and `embed` tags.  This method was tested with some simple javascript and an iframe within an HTML file.  The "junk" or "benign" elements within the file would be effectively removed and replaced with an iframe that would render the phishing site in its place.  
+<br>
+```javascript
+<script>
+    document.getElementById('junk').style.display = 'none';
+    let s = decodeURIComponent(escape(window.atob(<base64 encoded file>))
+    let blob = new Blob([s], {type : "text/html"});
+
+    var reader = new FileReader();
+
+    reader.addEventListener("loadend", function(e){
+        document.getElementById("test").src = e.srcElement.result;
+    });
+
+    reader.readAsDataURL(blob)
+</script>
+
+```
+
