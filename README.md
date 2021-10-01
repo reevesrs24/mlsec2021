@@ -18,11 +18,15 @@ Overall I was aiming for a plug and play method which could be used for every ph
 In order to deploy the base64 encoded phishing site a method would need to be devised to extract and overlay the benign template with the phishing site.  The `src` HTML attribute intially seemed to be the most promising method since a bae64 encoded string could be converted to a `text/html` blob and injected into an element with this attribute.  Doing a little research led to an assortment of HTML tags that utilized this attribute in some capacity.  
 <br>
 <br>
-![alt text](phishing_track/images/html_src.PNG)
+<p align="center">
+<img src="phishing_track/images/html_src.PNG" width=85% height=85%>
+</p>
 <br>
 <br>
+
 After some trial and error it became evident that the only viable HTML elements that would recreate the original phishing site with a high degree of fidelity were the `iframe` and `embed` tags.  This method was tested with some simple javascript and an iframe within an HTML file.  The "junk" or "benign" elements within the file would be effectively removed and replaced with an iframe that would render the phishing site in its place.  
 <br>
+
 ```javascript
 <script>
     document.getElementById('junk').style.display = 'none';
@@ -37,11 +41,15 @@ After some trial and error it became evident that the only viable HTML elements 
 
     reader.readAsDataURL(blob)
 </script>
-
 ```
+
 <br>
 <br>
 While this method appeared to be fulfilling the requisite technical needs for this method to be viable there was however a fatal flaw that would ultimately lead to scrapping of this technique.
 <br>
 <br>
-![alt text](phishing_track/images/01.gif)
+<p align="center">
+<img src="phishing_track/images/01.gif" width=85% height=85%>
+</p>
+<br>
+<br>
