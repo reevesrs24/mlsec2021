@@ -26,6 +26,7 @@ In order to deploy the base64 encoded phishing site a method would need to be de
 
 After some trial and error it became evident that the only viable HTML elements that would recreate the original phishing site with a high degree of fidelity were the `iframe` and `embed` tags.  This method was tested with some simple javascript and an iframe within an HTML file.  The "junk" or "benign" elements within the file would be effectively removed and replaced with an iframe that would render the phishing site in its place.  
 <br>
+<br>
 
 ```javascript
 <script>
@@ -45,7 +46,7 @@ After some trial and error it became evident that the only viable HTML elements 
 
 <br>
 <br>
-While this method appeared to be fulfilling the requisite technical needs for this method to be viable there was however a fatal flaw that would ultimately lead to scrapping of this technique.
+While this method appeared to be fulfilling the requisite technical needs for this method to be viable there was however a fatal flaw that would ultimately lead to scrapping of this technique.  Displayed below are two images of the `01.html` phishing site.  One image is of the recreated phishing site using an iframe and the other is the original file displated out of the box.  The images appear to be identical however when the screenshot images taken via `chrome --headless` are hashed they do not match.  The `iframe` renders the data in a slighly different manner and thus some minor pertubations can be observed, but not by the human eye.  Even if this method is off by just 1 pixel this method is no longer viable and must be abandoned.  So back to the drawing board.  
 <br>
 <br>
 <p align="center">
@@ -53,3 +54,21 @@ While this method appeared to be fulfilling the requisite technical needs for th
 </p>
 <br>
 <br>
+The javascript method `document.write` can be used but I was originally a bit hesitant to use this method since since some of the phishing files utilize this same javascript and it might trigger the anti-phishing models to flag my file.  This method proved to be an option when both hashes matched. 
+<br>
+<br>
+
+```javascript
+<script>
+    document.getElementById('junk').remove();
+    let s = decodeURIComponent(escape(window.atob( <base64 encoded phishing site> )));
+    document.write(s);
+</script>
+```
+
+<br>
+<br>
+Now that a method has been devised to recreate the phishing site a benign template would need to be found to fool the anti-phishing models into not flagging the file.
+
+## 3. Searching for a Benign Template ##
+Intially I though this would be relatively easy finding an HTML file that would be able to bypass all 7 of the anti-phishing models, but this proved to be far more difficult than I aniticipated.  Originally I tried what I would assume to be anodyne HTML files such as microsoft.com, espn.com. google.com and facebook.com, however none of these files were able to bypass all 7 of the anti-phishing models.  My next thoughts were "what would pass all 7 models"?  I tried Wikipedia pages translated to various languages, PE files, txt files, pics, gifs, high entropy files and others that have slipped my mind.  Ultimately out of frustration I decided to automate this process and hope for the best.  Ended up writing a script that would iterate through the [Majestic Million](https://majestic.com/reports/majestic-million) list of top sites to see if any of the home pages of these sites would have whatever X factor was needed to bypass these models.  
