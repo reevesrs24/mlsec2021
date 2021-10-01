@@ -39,4 +39,9 @@ After some trial and error it became evident that the only viable HTML elements 
 </script>
 
 ```
-
+<br>
+<br>
+While this method appeared to be fulfilling the requisite technical needs for this method to be viable there was however a fatal flaw that would ultimately lead to scrapping of this technique.
+<br>
+<br>
+![alt text](phishing_track/images/01.gif)
