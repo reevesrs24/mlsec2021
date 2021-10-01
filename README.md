@@ -57,7 +57,7 @@ While this method appeared to be fulfilling the requisite technical needs for th
 <br>
 <br>
 
-The javascript method `document.write()` can be used but I was originally a bit hesitant to use this method since since some of the phishing files utilize this same javascript and it might trigger the anti-phishing models to flag my file.  This method proved to be an option when both hashes matched.
+The javascript method `document.write()` can be used, but I was originally a bit hesitant to use this method since since some of the phishing files utilize this same javascript and though it might trigger the anti-phishing models to flag my file.  This method however proved to be an option when both hashes matched.
 
 <br>
 <br>
