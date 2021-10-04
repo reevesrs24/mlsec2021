@@ -15,7 +15,7 @@ Overall I was aiming for a plug and play method which could be used for every ph
 
 ## 2. Deployment Method ##
 
-In order to deploy the base64 encoded phishing site a method would need to be devised to extract and overlay the benign template with the phishing site.  The `src` HTML attribute intially seemed to be the most promising method since a bae64 encoded string could be converted to a `text/html` blob and injected into an element with this attribute.  Doing a little research led to an assortment of HTML tags that utilized this attribute in some capacity.  
+In order to deploy the base64 encoded phishing site a method would need to be devised to extract and overlay the benign template with the phishing site.  The `src` HTML attribute intially seemed to be the most promising method since a bae64 encoded string could be converted to a `text/html` blob and injected into an element which employed this attribute.  Doing a little research led to an assortment of HTML tags that utilized this attribute in some capacity.  
 <br>
 <br>
 <p align="center">
@@ -47,7 +47,7 @@ After some trial and error it became evident that the only viable HTML elements 
 <br>
 <br>
 
-While this method appeared to be fulfilling the requisite technical needs for this method to be viable there was however a fatal flaw that would ultimately lead to scrapping of this technique.  Displayed below are two images of the `01.html` phishing site.  One image is of the recreated phishing site using an iframe and the other is the original file displayed out of the box.  The images appear to be identical however when the screenshot images taken via `chrome --headless` are hashed they do not match.  The `iframe` renders the data in a slighly different manner and thus some minor pertubations can be observed, but not by the human eye.  Even if this method is off by just 1 pixel this method is no longer viable and must be abandoned.  So back to the drawing board.  
+While this method appeared to be fulfilling the requisite technical needs for this method to be viable, there was however a fatal flaw that would ultimately lead to the scrapping of this technique.  Displayed below are two images of the `01.html` phishing site.  One image is of the recreated phishing site using an iframe and the other is the original file displayed out of the box.  The images appear to be identical however when the screenshot images taken via `chrome --headless` are hashed they do not match.  The `iframe` renders the data in a slighly different manner and thus some minor pertubations can be observed, but not by the human eye.  Even if this method is off by just 1 pixel this method is no longer viable and must be abandoned.  So back to the drawing board.  
 
 <br>
 <br>
@@ -57,7 +57,7 @@ While this method appeared to be fulfilling the requisite technical needs for th
 <br>
 <br>
 
-The javascript method `document.write()` can be used, but I was originally a bit hesitant to use this method since since some of the phishing files utilize this same javascript and though it might trigger the anti-phishing models to flag my file.  This method however proved to be an option when both hashes matched.
+The javascript method `document.write()` can be used, but I was originally a bit hesitant to use this method since since some of the phishing files utilize this same javascript and though it might trigger the anti-phishing models into flagging my file as malicious.  This method however proved to be an option when both hashes matched.   Even though by utilizing this javascript method increased the potential probability of the anti-phishing models to detect my surreptitious deployment of the phishing site, I decided to in this direction and hope for the best.
 
 <br>
 <br>
