@@ -6,10 +6,10 @@ The dawn of the digital age has unleashed the Captain Ahab's upon the sea's of t
 First and foremost sspecial thanks to [Dr. Hyrum Anderson](https://twitter.com/drhyrum?lang=en) from Microsoft and [Zoltan Balazs](https://twitter.com/zh4ck?lang=en) from CUJO AI for organizing this one of kind competition.  Also a shout out to the sponsors who helped support and make this competition possible [CUJO AI](https://twitter.com/CUJOAI), [Microsoft](https://twitter.com/Microsoft), [MRG Effitas](https://twitter.com/mrgeffitas), [NVIDIA](https://twitter.com/nvidia) and [VMRay](https://twitter.com/vmray).
 
 ## 1. Strategy ##
-The overall strategy to defeat the anti-phishing models combined a base64 encoding of the phishing site which would then be embedded and self-extracted within a benign template.  In order to achieve FUD this strategy was broken down into 3 distinct parts.
-1. Devise method utlizing javascript to recreate the phishing page
+The overall strategy to defeat the anti-phishing models combined a base64 encoding of the phishing site which would then be embedded and self-extracted within a benign template.  In an attempt to achieve FUD this strategy was broken down into 3 distinct parts.
+1. Devise high fidelity method utlizing javascript to recreate the phishing page
 2. Find benign html template which would bypass all 7 anti-phishing models
-3. Incrementally combine the deployment method with the benign html template
+3. Incrementally combine the malicious javscript with the benign html template
 
 Overall I was aiming for a plug and play method which could be used for every phsihing site and one which would mitigate the overall manual configuration needed to fully bypass the models.
 
