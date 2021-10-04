@@ -92,6 +92,11 @@ Two separate parts now need to be combined in such a way that the encoded phishi
 <head id="junk1">
 <title>Adobe: Creative, marketing and document management solutions</title>
 ...
+ 
+</head>
+<div id="junk2">
+ ...
+    
 <script id="yo" class="<base64 encoded phishing site>" type="text/javascript" src="/etc.titan.dexterlibs/homepage/clientlibs/publish.combined.fp-421c4c081baf214852bd975d300f5d39.js" defer></script>
 </div>
 
